@@ -1,0 +1,39 @@
+﻿@model CinemaFinalMVC.Models.Movie
+
+@{
+    ViewData["Title"] = "MovieDetails";
+}
+
+<h1>Details</h1>
+
+<div class="container">
+    <h4>Movie</h4>
+    <hr />
+
+<div class="card mb-3">
+    <img src="@Model.MoviePicture" height="600" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+        <p class="card-text">@Html.DisplayFor(model => model.Description)</p>
+
+        <ul class="list-group">
+            <li class="list-group-item"></li>
+            <li class="list-group-item"><strong>Premiere Date:</strong> @Html.DisplayFor(model => model.Premiere)</li>
+            <li class="list-group-item"><strong>Duration: </strong>@Html.DisplayFor(model => model.Duration)</li>
+            <li class="list-group-item"><strong>Rating: </strong>@Html.DisplayFor(model => model.Rating)</li>
+            <li class="list-group-item"><strong>Allowed Age:</strong>@Html.DisplayFor(model => model.age)</li>
+            <li class="list-group-item">
+                <strong>Genres: </strong>@foreach (var i in ViewBag.genres)
+                {
+                    <span>@i.Genre.Name </span>
+                }
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+    </div>

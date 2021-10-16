@@ -1,0 +1,59 @@
+﻿@model List<CinemaFinalMVC.Models.MovieGenre>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+
+    <div class="card text-center">
+        <div class="card-header">
+            Genre
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.genre.Name</h5>
+            <p class="card-text"></p>
+            <a href="#" class="btn btn-primary">@ViewBag.genre.Description</a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-10">
+            @foreach (var item in Model)
+            {
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-3">
+                            <img src="@Html.DisplayFor(modelItem => item.Movie.MoviePicture)" width="200" heigt="400" alt="...">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Movie.Name)</h5>
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.Movie.Description)</p>
+                                <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => item.Movie.Rating)</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-2">
+            <ul class="list-group">
+                <li class="list-group-item" style="background-color: black; color: white"><strong>Genre</strong></li>
+            </ul>
+            @foreach (var item in ViewBag.genres)
+            {
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="/" style="margin-left: 10px; color: black; font-weight: bold; font-size: 15px" class="link">@item.Name</a></li>
+                </ul>
+            }
+            <ul class="list-group">
+                <li class="list-group-item" style="background-color: black; color: white"><strong>Year Production</strong></li>
+                @foreach (var item in ViewBag.years)
+                {
+                    <li class="list-group-item"><a class="link" style="margin-left: 5px; color: black; font-weight: bold; font-size: 15px" href="#">@item.Premiere.Year</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CinemaFinalMVC.Models.Movie>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" style="color: white" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" style="color: white" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" style="color: white" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+                <img src="https://i.pinimg.com/originals/28/5a/48/285a48a0e3dcc3f9ba9c939a05a6cd23.jpg" width="700" height="400" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block rounded" style="background-color: rgba(180, 180, 180, 0.5); color: white">
+                    <h5>Film Portal</h5>
+                    <p>Everything about movies and premieries.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src=" https://external-preview.redd.it/PbuVAkor8mt2UIOXmV3rJrz9ttoJnPfCKhID1i7IRyc.jpg?auto=webp&s=6623bd9774f2292b2c10f69ba2b1948f6cb26612" width="700" height="400" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block rounded" style="background-color: rgba(180, 180, 180, 0.5); color: white">
+                    <h5>Film Portal</h5>
+                    <p>Everything about movies and premieries.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="https://wallpapercave.com/wp/wp6962800.jpg" width="700" height="400" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block rounded" style="background-color: rgba(180, 180, 180, 0.5); color: white">
+                    <h5>Film Portal</h5>
+                    <p>Everything about movies and premieries.</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" style="color: white" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span style="color: white" class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" style="color: white" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span style="color: white" class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-10">
+            @foreach (var item in Model)
+            {
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img src="@Html.DisplayFor(modelItem => item.MoviePicture)" width="200" heigt="400" alt="...">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h5 class="card-title"><a asp-controller="Home" asp-action="MovieDetails" asp-route-id="@item.Id" style="color:black">@Html.DisplayFor(modelItem => item.Name)</a></h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                            <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => item.Rating)</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="col-2">
+            <ul class="list-group">
+                <li class="list-group-item" style="background-color: black; color: white"><strong>Genre</strong></li>
+            </ul>
+            @foreach (var item in ViewBag.genres)
+            {
+                <ul class="list-group">
+                    <li class="list-group-item"><a asp-controller="Home" asp-action="ListMoviesByGenre" asp-route-id="@item.Id" asp-area="" style="margin-left: 10px; color: black; font-weight: bold; font-size: 15px" class="link">@item.Name</a></li>
+                </ul>
+            }
+            <ul class="list-group">
+                <li class="list-group-item" style="background-color: black; color: white"><strong>Year Production</strong></li>
+                @foreach (var item in ViewBag.years)
+                {
+                    <li class="list-group-item"><a class="link" style="margin-left: 5px; color: black; font-weight: bold; font-size: 15px" href="#">@item.Premiere.Year</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
